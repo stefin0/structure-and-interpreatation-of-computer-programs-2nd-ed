@@ -9,19 +9,24 @@ iterative process.
 |#
 
 ; recursive process
-(define (f-recursive n)
+(define (f-rec n)
   (cond ((< n 3) n)
         ((or (> n 3) (= n 3))
-         (+ (f-recursive (- n 1))
-            (* 2 (f-recursive (- n 2)))
-            (* 3 (f-recursive (- n 3)))))))
+         (+ (f-rec (- n 1))
+            (* 2 (f-rec (- n 2)))
+            (* 3 (f-rec (- n 3)))))))
 
 ; iterative process
 ; hint: use (probably 3) state variables
-(define (f-iterative n)
-  (f-iter 
+(define (f-iter n)
+  (if (< n 3)
+      n
+      (iter 2 1 0 (- n 2))))
 
-(define (f-iter a b c count)
-  (cond ((< count 3) count)
-        ((or (> n 3) (= n 3))
-         ())))
+(define (iter a b c count)
+  (if (= count 0)
+      a
+      (iter (+ a (* 2 b) (* 3 c))
+              a
+              b
+              (- count 1))))
